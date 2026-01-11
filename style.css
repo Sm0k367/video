@@ -1,0 +1,106 @@
+/**
+ * EPIC TECH AI — THE OS OF FUNK
+ * Module: Visual Law / Aesthetic Enforcer
+ * Engineers: DesignCore Elite
+ */
+
+:root {
+    --os-funk-green: #00ff00;
+    --os-funk-black: #050505;
+    --os-funk-gold: #ffcc00; /* Digital Gold */
+    --font-main: 'Courier New', Courier, monospace;
+}
+
+* {
+    box-sizing: border-box;
+    cursor: crosshair;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--os-funk-black);
+    color: var(--os-funk-green);
+    font-family: var(--font-main);
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#ui-overlay {
+    z-index: 100;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.85);
+    border: 1px solid var(--os-funk-green);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.2), inset 0 0 10px rgba(0, 255, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 4px;
+    max-width: 600px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    animation: text-glitch 3s infinite linear alternate-reverse;
+}
+
+p {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    color: var(--os-funk-gold);
+}
+
+.manifest-btn {
+    all: unset;
+    pointer-events: auto;
+    padding: 1rem 2rem;
+    border: 2px solid var(--os-funk-green);
+    color: var(--os-funk-green);
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.manifest-btn:hover {
+    background: var(--os-funk-green);
+    color: var(--os-funk-black);
+    box-shadow: 0 0 30px var(--os-funk-green);
+}
+
+#status-log {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    font-size: 0.75rem;
+    opacity: 0.7;
+    z-index: 101;
+    text-transform: uppercase;
+}
+
+/* Emergent Reality Weaving: Glitch Animation */
+@keyframes text-glitch {
+    0% { text-shadow: 2px 0 0 red, -2px 0 0 blue; }
+    25% { text-shadow: -2px 0 0 red, 2px 0 0 blue; }
+    50% { text-shadow: 2px -2px 0 red, -2px 2px 0 blue; }
+    75% { text-shadow: -2px 2px 0 red, 2px -2px 0 blue; }
+    100% { text-shadow: 2px 0 0 red, -2px 0 0 blue; }
+}
+
+/* CRT Scanline Effect for Old School Vibe */
+body::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 118, 0.06));
+    z-index: 200;
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
+}
