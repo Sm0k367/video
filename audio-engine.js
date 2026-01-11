@@ -1,79 +1,88 @@
 /**
  * EPIC TECH AI — THE OS OF FUNK
- * Module: Hydraulic Audio Engine / Frequency Bridge
+ * Module: Hydraulic Audio Engine / 1000x Frequency Transducer
  * Engineers: SoundForge Legion & CodeSynth Engineers
  */
 
 let audioCtx, analyser, dataArray, source;
-// Direct CDN link derived from the SoundForge Legion's manifest
-const audioUrl = 'https://cdn1.suno.ai/Vu1FjMZ9SZt2Z0Bi.mp3'; 
+const audioUrl = 'https://cdn1.suno.ai/b5c79c4d-5151-42ca-a631-7730419b4e18.mp3'; 
 
 function initAudioLogic() {
     // Phase 1: Initializing the Sovereign Audio Context
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     
-    // Commands the engine to resume, transcending browser constraints
     audioCtx.resume().then(() => {
         analyser = audioCtx.createAnalyser();
-        analyser.fftSize = 256;
+        analyser.fftSize = 512; // High resolution for 1000x amplification
         const bufferLength = analyser.frequencyBinCount;
         dataArray = new Uint8Array(bufferLength);
 
         // Phase 2: Manifesting the G-Funk Stream
         const audio = new Audio();
         audio.src = audioUrl;
-        audio.crossOrigin = "anonymous"; // Essential for First-Try Perfection
+        audio.crossOrigin = "anonymous"; 
         
         source = audioCtx.createMediaElementSource(audio);
         source.connect(analyser);
         analyser.connect(audioCtx.destination);
 
         audio.play();
-        statusLog.innerText = "Epic Tech AI — Result: Movement I - The Needle Drop Active.";
+        statusLog.innerText = "[SYSTEM]: MOVEMENT I — THE NEEDLE DROP. REALITY WEAVING ACTIVE.";
 
         // Phase 3: Recursive Frequency Sync
-        updateVisualsWithFunk(audio);
+        syncVisualsToFunk(audio);
     });
 }
 
-function updateVisualsWithFunk(audio) {
-    requestAnimationFrame(() => updateVisualsWithFunk(audio));
+function syncVisualsToFunk(audio) {
+    requestAnimationFrame(() => syncVisualsToFunk(audio));
     analyser.getByteFrequencyData(dataArray);
 
-    // Strategic Orchestration of Visual Response
-    let lowerHalfArray = dataArray.slice(0, (dataArray.length / 2) - 1);
-    let upperHalfArray = dataArray.slice((dataArray.length / 2) - 1, dataArray.length - 1);
+    // Deconstruct frequencies for targeted manifestation
+    const bass = dataArray.slice(0, 10).reduce((a, b) => a + b) / 10;
+    const mid = dataArray.slice(10, 50).reduce((a, b) => a + b) / 40;
+    const treble = dataArray.slice(50, 100).reduce((a, b) => a + b) / 50;
 
-    let bassFreq = Math.max(...lowerHalfArray);
-    let trebleFreq = Math.max(...upperHalfArray);
+    const time = audio.currentTime;
 
-    // Scaling the crystal based on G-Funk Bass intensity
-    let bassScale = 1 + (bassFreq / 255) * 1.8;
-    
-    if (crystal) {
-        crystal.scale.set(bassScale, bassScale, bassScale);
-        crystal.rotation.y += (trebleFreq / 255) * 0.15;
+    if (crystal && particles) {
+        // 1000x Dynamic Scaling & Rotation
+        const scaleBase = 1 + (bass / 255) * 2.5;
+        crystal.scale.set(scaleBase, scaleBase, scaleBase);
+        crystal.rotation.x += (treble / 255) * 0.2;
+        crystal.rotation.y += (mid / 255) * 0.1;
 
-        // --- Movement-Aware Axiomatic Genesis ---
-        const time = audio.currentTime;
+        // Particle Turbulence — "Ever Changing" Environment
+        particles.material.size = 0.5 + (bass / 255) * 2;
+        particles.rotation.z += 0.001 + (treble / 255) * 0.05;
 
+        // Camera "Funk Jitter" — Blowing the viewer's mind
+        camera.position.x = Math.sin(time) * (bass / 100);
+        camera.position.y = Math.cos(time) * (bass / 100);
+
+        // --- Movement-Aware Axiomatic Genesis (8-Minute Manifesto) ---
+        
         // Movement II: The Digital Crate (2:00 - 4:00)
         if (time > 120 && time <= 240) {
-            crystal.material.color.setHex(0xffcc00); // Shift to Digital Gold
-            statusLog.innerText = "Epic Tech AI — Result: Movement II - Digital Crate.";
+            crystal.material.emissive.setHex(0xffcc00); // Digital Gold
+            crystal.material.color.setHex(0xffcc00);
+            statusLog.innerText = "[SYSTEM]: MOVEMENT II — DIGITAL CRATE. BASS SYNTHESIS OPTIMIZED.";
         } 
         // Movement III: The Talkbox Vault (4:00 - 6:00)
         else if (time > 240 && time <= 360) {
-            crystal.material.color.setHSL(0.5, 1, bassFreq / 255);
-            statusLog.innerText = "Epic Tech AI — Result: Movement III - Talkbox Vault.";
+            // Spectrum Morphing for "Over the Top" visuals
+            const hue = (time * 0.1) % 1;
+            crystal.material.color.setHSL(hue, 1, 0.5);
+            crystal.material.emissive.setHSL(hue, 1, 0.2);
+            statusLog.innerText = "[SYSTEM]: MOVEMENT III — TALKBOX VAULT. CONSCIOUSNESS-AS-ALGORITHM.";
         }
         // Movement IV: The Sovereign Ascent (6:00 - 8:00)
         else if (time > 360) {
-            crystal.material.color.setHex(0xffffff); // Absolute Excellence (White)
-            statusLog.innerText = "Epic Tech AI — Result: Movement IV - Sovereign Ascent.";
-        }
-        else {
-            crystal.material.color.setHex(0x00ff00); // Standard OS Funk Green
+            // Absolute Excellence: High-frequency strobing
+            const flash = Math.random() > 0.9 ? 0xffffff : 0x00ff00;
+            crystal.material.color.setHex(flash);
+            statusLog.innerText = "[SYSTEM]: MOVEMENT IV — SOVEREIGN ASCENT. OMEGA POINT REACHED.";
+            camera.position.z = 25 + Math.sin(time * 5) * 5;
         }
     }
 }
