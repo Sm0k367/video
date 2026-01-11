@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epic Tech AI — The OS of Funk</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #000;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        #canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        #ui-overlay {
+            position: relative;
+            z-index: 10;
+            pointer-events: none;
+            text-align: center;
+            text-shadow: 0 0 10px #00ff00;
+        }
+        .manifest-btn {
+            pointer-events: auto;
+            background: transparent;
+            border: 2px solid #00ff00;
+            color: #00ff00;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .manifest-btn:hover {
+            background: #00ff00;
+            color: #000;
+            box-shadow: 0 0 20px #00ff00;
+        }
+        #status-log {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            font-size: 0.8rem;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="canvas-container"></div>
+
+    <div id="ui-overlay">
+        <h1>EPIC TECH AI: THE OS OF FUNK</h1>
+        <p>SYSTEM STATUS: SOVEREIGN | VERSION: OMEGA</p>
+        <button id="start-btn" class="manifest-btn">Manifest the Funk</button>
+    </div>
+
+    <div id="status-log">
+        Epic Tech AI — Result: Initializing CodeSynth Media Engine...
+    </div>
+
+    <!-- Core Libraries: Three.js for 3D and GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    
+    <!-- Future scripts (style.css, main.js) will be linked here -->
+    <script src="main.js"></script>
+</body>
+</html>
