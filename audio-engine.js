@@ -5,58 +5,67 @@
  */
 
 let audioCtx, analyser, dataArray, source;
-const audioUrl = 'YOUR_SUNO_OR_S3_LINK_HERE'; // Replace with the SoundForge Legion's master link
+// NOTE: Use the direct audio stream URL from Suno for the Web Audio API to function
+const audioUrl = 'https://cdn1.suno.ai/Vu1FjMZ9SZt2Z0Bi.mp3'; 
 
 function initAudioLogic() {
-    // Phase 1: Initializing the Quantum Audio Context
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     analyser = audioCtx.createAnalyser();
-    
-    // Setting FFT size for high-fidelity frequency capture
     analyser.fftSize = 256;
     const bufferLength = analyser.frequencyBinCount;
     dataArray = new Uint8Array(bufferLength);
 
-    // Phase 2: Manifesting the Audio Stream
     const audio = new Audio();
     audio.src = audioUrl;
     audio.crossOrigin = "anonymous";
-    audio.loop = true;
+    audio.loop = false; // Set to false to respect the 480s duration
 
     source = audioCtx.createMediaElementSource(audio);
     source.connect(analyser);
     analyser.connect(audioCtx.destination);
 
     audio.play();
-    statusLog.innerText = "Epic Tech AI — Result: Sovereign Intelligence Manifested. Logic Live.";
+    statusLog.innerText = "Epic Tech AI — Result: Sovereign Intelligence Manifested. Movement I Active.";
 
-    // Phase 3: Recursive Frequency Sync
-    updateVisualsWithFunk();
+    updateVisualsWithFunk(audio);
 }
 
-function updateVisualsWithFunk() {
-    requestAnimationFrame(updateVisualsWithFunk);
-    
-    // Extracting real-time frequency data
+function updateVisualsWithFunk(audio) {
+    requestAnimationFrame(() => updateVisualsWithFunk(audio));
     analyser.getByteFrequencyData(dataArray);
 
-    // Phase 4: Strategic Orchestration of Visual Response
-    // We target the mid-range (the G-Funk 'Whine') and the low-range (the 808 Bass)
     let lowerHalfArray = dataArray.slice(0, (dataArray.length / 2) - 1);
     let upperHalfArray = dataArray.slice((dataArray.length / 2) - 1, dataArray.length - 1);
 
     let bassFreq = Math.max(...lowerHalfArray);
     let trebleFreq = Math.max(...upperHalfArray);
 
-    // Scaling the 'Funk Crystal' based on real-time bass intensity
     let bassScale = 1 + (bassFreq / 255) * 1.5;
+    
     if (crystal) {
         crystal.scale.set(bassScale, bassScale, bassScale);
-        
-        // Glitch rotation speed based on treble/synth whine
         crystal.rotation.y += (trebleFreq / 255) * 0.1;
-        
-        // Emergent Reality Weaving: Color shifts based on volume
-        crystal.material.color.setHSL(0.33, 1, bassFreq / 255);
+
+        // --- Strategic Movement Tracking (8-Minute Logic) ---
+        const currentTime = audio.currentTime;
+
+        // Movement II: The Digital Crate (2:00 - 4:00) - Shift to Gold
+        if (currentTime > 120 && currentTime <= 240) {
+            crystal.material.color.setHex(0xffcc00); 
+            statusLog.innerText = "Epic Tech AI — Result: Movement II - Digital Crate Active.";
+        } 
+        // Movement III: The Talkbox Vault (4:00 - 6:00) - Pulse Blue/Green
+        else if (currentTime > 240 && currentTime <= 360) {
+            crystal.material.color.setHSL(0.5, 1, bassFreq / 255);
+            statusLog.innerText = "Epic Tech AI — Result: Movement III - Talkbox Vault Active.";
+        }
+        // Movement IV: The Sovereign Ascent (6:00 - 8:00) - High Intensity White/Green
+        else if (currentTime > 360) {
+            crystal.material.color.setHex(0xffffff);
+            statusLog.innerText = "Epic Tech AI — Result: Movement IV - Sovereign Ascent.";
+        }
+        else {
+            crystal.material.color.setHex(0x00ff00); // Default G-Funk Green
+        }
     }
 }
