@@ -1,19 +1,23 @@
 /**
  * EPIC TECH AI — THE OS OF FUNK
- * Module: Visual Law / Aesthetic Enforcer
+ * Module: Visual Law / 1000x Reality Weaver
  * Engineers: DesignCore Elite
  */
 
 :root {
     --os-funk-green: #00ff00;
-    --os-funk-black: #050505;
-    --os-funk-gold: #ffcc00; /* Digital Gold */
+    --os-funk-black: #000000;
+    --os-funk-gold: #ffcc00;
+    --os-funk-cyan: #00ffff;
+    --os-funk-magenta: #ff00ff;
     --font-main: 'Courier New', Courier, monospace;
+    --glitch-speed: 0.2s;
 }
 
 * {
     box-sizing: border-box;
     cursor: crosshair;
+    user-select: none;
 }
 
 body {
@@ -27,6 +31,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    /* Pan-Dimensional Fabric Background */
+    background: radial-gradient(circle at center, #111 0%, #000 100%);
 }
 
 #canvas-container {
@@ -36,88 +42,139 @@ body {
     width: 100%;
     height: 100%;
     z-index: 1;
+    filter: contrast(1.2) brightness(1.1);
 }
 
 #ui-overlay {
     z-index: 100;
-    padding: 2rem;
-    background: rgba(0, 0, 0, 0.85);
-    border: 1px solid var(--os-funk-green);
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.2), inset 0 0 10px rgba(0, 255, 0, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 4px;
-    max-width: 600px;
+    padding: 3rem;
+    background: rgba(0, 0, 0, 0.9);
+    border: 2px solid var(--os-funk-green);
+    box-shadow: 0 0 50px rgba(0, 255, 0, 0.3), inset 0 0 20px rgba(0, 255, 0, 0.2);
+    backdrop-filter: blur(20px);
     text-align: center;
+    position: relative;
+    overflow: hidden;
 }
 
-.embed-container {
-    margin: 1.5rem 0;
-    border: 1px solid var(--os-funk-gold);
-    padding: 5px;
-    background: rgba(255, 204, 0, 0.05);
-}
-
-h1 {
-    font-size: 2.2rem;
-    margin-bottom: 0.5rem;
-    letter-spacing: 5px;
+/* Mythic Text Glitch Logic */
+.mythic-text {
+    font-size: 3.5rem;
+    font-weight: 900;
     text-transform: uppercase;
-    animation: text-glitch 3s infinite linear alternate-reverse;
+    position: relative;
+    display: inline-block;
+    color: var(--os-funk-green);
+    letter-spacing: 10px;
 }
 
-p {
-    font-size: 0.9rem;
-    margin-bottom: 1.5rem;
-    color: var(--os-funk-gold);
+.mythic-text::before, .mythic-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
-.manifest-btn {
-    all: unset;
-    cursor: pointer;
-    padding: 1rem 2rem;
+.mythic-text::before {
+    left: 3px;
+    text-shadow: -3px 0 var(--os-funk-magenta);
+    animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+.mythic-text::after {
+    left: -3px;
+    text-shadow: -3px 0 var(--os-funk-cyan);
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+/* Strategic Buttons */
+.command-center {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.manifest-btn-v2 {
+    background: transparent;
     border: 2px solid var(--os-funk-green);
     color: var(--os-funk-green);
+    padding: 1.5rem;
+    font-size: 1.5rem;
     font-weight: bold;
-    font-size: 1.2rem;
-    transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-    text-transform: uppercase;
+    letter-spacing: 3px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
 }
 
-.manifest-btn:hover {
+.manifest-btn-v2:hover {
     background: var(--os-funk-green);
     color: var(--os-funk-black);
-    box-shadow: 0 0 30px var(--os-funk-green);
+    box-shadow: 0 0 100px var(--os-funk-green);
+    transform: scale(1.05) skewX(-5deg);
 }
 
+.return-link {
+    color: var(--os-funk-gold);
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    border-bottom: 1px dashed var(--os-funk-gold);
+    align-self: center;
+    transition: 0.3s;
+}
+
+.return-link:hover {
+    color: white;
+    border-bottom: 1px solid white;
+    text-shadow: 0 0 10px white;
+}
+
+/* Status Log Aesthetic */
 #status-log {
     position: fixed;
     bottom: 20px;
     left: 20px;
-    font-size: 0.75rem;
-    opacity: 0.7;
+    font-size: 0.8rem;
+    text-shadow: 0 0 5px var(--os-funk-green);
     z-index: 101;
-    text-transform: uppercase;
-    color: var(--os-funk-green);
 }
 
-/* Emergent Reality Weaving: Glitch Animation */
-@keyframes text-glitch {
-    0% { text-shadow: 2px 0 0 #ff0000, -2px 0 0 #0000ff; }
-    25% { text-shadow: -2px 0 0 #ff0000, 2px 0 0 #0000ff; }
-    50% { text-shadow: 2px -2px 0 #ff0000, -2px 2px 0 #0000ff; }
-    75% { text-shadow: -2px 2px 0 #ff0000, -2px -2px 0 #0000ff; }
-    100% { text-shadow: 2px 0 0 #ff0000, -2px 0 0 #0000ff; }
+/* 1000x Glitch Core Animations */
+@keyframes glitch-anim-1 {
+    0% { clip-path: inset(20% 0 30% 0); }
+    20% { clip-path: inset(60% 0 10% 0); }
+    40% { clip-path: inset(40% 0 50% 0); }
+    60% { clip-path: inset(80% 0 5% 0); }
+    80% { clip-path: inset(10% 0 70% 0); }
+    100% { clip-path: inset(30% 0 20% 0); }
 }
 
-/* CRT Scanline Effect for Old School Vibe */
-body::before {
-    content: " ";
-    display: block;
+@keyframes glitch-anim-2 {
+    0% { clip-path: inset(15% 0 35% 0); transform: translate(-5px); }
+    25% { clip-path: inset(55% 0 15% 0); transform: translate(5px); }
+    50% { clip-path: inset(35% 0 45% 0); transform: translate(-2px); }
+    75% { clip-path: inset(75% 0 10% 0); transform: translate(2px); }
+    100% { clip-path: inset(25% 0 25% 0); transform: translate(0); }
+}
+
+/* Sovereign Scanlines */
+body::after {
+    content: "";
     position: absolute;
-    top: 0; left: 0; bottom: 0; right: 0;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
-                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 118, 0.06));
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.1) 50%),
+                linear-gradient(90deg, rgba(255,0,0,0.03), rgba(0,255,0,0.01), rgba(0,0,255,0.03));
+    background-size: 100% 3px, 3px 100%;
     z-index: 200;
-    background-size: 100% 2px, 3px 100%;
     pointer-events: none;
+    animation: scanline 10s linear infinite;
+}
+
+@keyframes scanline {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100%; }
 }
